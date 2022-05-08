@@ -100,7 +100,7 @@ class WindowAttention(layers.Layer):
         )
         return tf.transpose(relative_position_bias, [2, 0, 1])
 
-    def call(self, x, mask=None):
+    def call(self, x, mask=None, return_attns=False):
         """
         Args:
             x: input features with shape of (num_windows*B, N, C)
@@ -138,7 +138,11 @@ class WindowAttention(layers.Layer):
 
         x = self.proj(x)
         x = self.proj_drop(x)
-        return x
+
+        if return_attns:
+            return x, attn
+        else:
+            return x
 
     def get_config(self):
         config = super().get_config()

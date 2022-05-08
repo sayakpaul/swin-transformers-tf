@@ -195,3 +195,17 @@ class SwinTransformer(keras.Model):
         x = self.forward_features(x)
         x = self.forward_head(x)
         return x
+
+    def get_attention_scores(self, x):
+        all_attention_scores = {}
+
+        x = self.projection(x)
+        if self.absolute_pos_embed is not None:
+            x = x + self.absolute_pos_embed
+        x = self.pos_drop(x)
+
+        for i, swin_layer in enumerate(self.swin_layers):
+            x, attention_scores = swin_layer(x, return_attns=True)
+            all_attention_scores.update({f"swin_stage_{i}": attention_scores})
+
+        return all_attention_scores

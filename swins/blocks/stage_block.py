@@ -89,9 +89,20 @@ class BasicLayer(keras.Model):
         else:
             self.downsample = None
 
-    def call(self, x):
-        for block in self.blocks:
-            x = block(x)
+    def call(self, x, return_attns=False):
+        if return_attns:
+            attention_scores = {}
+
+        for i, block in enumerate(self.blocks):
+            if not return_attns:
+                x = block(x)
+            else:
+                x, attns = block(x, return_attns)
+                attention_scores.update({f"swin_block_{i}": attns})
         if self.downsample is not None:
             x = self.downsample(x)
-        return x
+
+        if return_attns:
+            return x, attention_scores
+        else:
+            return x

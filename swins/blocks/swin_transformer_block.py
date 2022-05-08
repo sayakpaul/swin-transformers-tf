@@ -125,7 +125,7 @@ class SwinTransformerBlock(keras.Model):
         attn_mask = tf.where(attn_mask != 0, -100.0, attn_mask)
         return tf.where(attn_mask == 0, 0.0, attn_mask)
 
-    def call(self, x):
+    def call(self, x, return_attns=False):
         H, W = self.input_resolution
         B, L, C = tf.shape(x)[0], tf.shape(x)[1], tf.shape(x)[2]
 
@@ -150,10 +150,14 @@ class SwinTransformerBlock(keras.Model):
         )  # [num_win*B, window_size*window_size, C]
 
         # W-MSA/SW-MSA
-        attn_windows = self.attn(
-            x_windows, mask=self.attn_mask
-        )  # [num_win*B, window_size*window_size, C]
-
+        if not return_attns:
+            attn_windows = self.attn(
+                x_windows, mask=self.attn_mask
+            )  # [num_win*B, window_size*window_size, C]
+        else:
+            attn_windows, attn_scores = self.attn(
+                x_windows, mask=self.attn_mask, return_attns=True
+            )  # [num_win*B, window_size*window_size, C]
         # merge windows
         attn_windows = tf.reshape(
             attn_windows, (-1, self.window_size, self.window_size, C)
@@ -177,4 +181,7 @@ class SwinTransformerBlock(keras.Model):
         x = shortcut + self.drop_path(x)
         x = x + self.drop_path(self.mlp(self.norm2(x)))
 
-        return x
+        if return_attns:
+            return x, attn_scores
+        else:
+            return x
