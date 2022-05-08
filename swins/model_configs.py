@@ -5,6 +5,7 @@
 def swin_base_patch4_window12_384():
     """Swin-B @ 384x384, pretrained ImageNet-22k, fine tune 1k"""
     cfg = dict(
+        img_size=384,
         patch_size=4,
         window_size=12,
         embed_dim=128,
@@ -31,6 +32,7 @@ def swin_base_patch4_window7_224():
 def swin_large_patch4_window12_384():
     """Swin-L @ 384x384, pretrained ImageNet-22k, fine tune 1k"""
     cfg = dict(
+        img_size=384,
         patch_size=4,
         window_size=12,
         embed_dim=192,
@@ -83,6 +85,7 @@ def swin_tiny_patch4_window7_224():
 def swin_base_patch4_window12_384_in22k():
     """Swin-B @ 384x384, trained ImageNet-22k"""
     cfg = dict(
+        img_size=384,
         patch_size=4,
         window_size=12,
         embed_dim=128,
@@ -111,6 +114,7 @@ def swin_base_patch4_window7_224_in22k():
 def swin_large_patch4_window12_384_in22k():
     """Swin-L @ 384x384, trained ImageNet-22k"""
     cfg = dict(
+        img_size=384,
         patch_size=4,
         window_size=12,
         embed_dim=192,
@@ -173,3 +177,20 @@ def swin_s3_base_224():
         name="swin_s3_base_224",
     )
     return cfg
+
+
+MODEL_MAP = {
+    "swin_base_patch4_window12_384": swin_base_patch4_window12_384,
+    "swin_base_patch4_window7_224": swin_base_patch4_window7_224,
+    "swin_large_patch4_window12_384": swin_large_patch4_window12_384,
+    "swin_large_patch4_window7_224": swin_large_patch4_window7_224,
+    "swin_small_patch4_window7_224": swin_small_patch4_window7_224,
+    "swin_tiny_patch4_window7_224": swin_tiny_patch4_window7_224,
+    "swin_base_patch4_window12_384_in22k": swin_base_patch4_window12_384_in22k,
+    "swin_base_patch4_window7_224_in22k": swin_base_patch4_window7_224_in22k,
+    "swin_large_patch4_window12_384_in22k": swin_large_patch4_window12_384_in22k,
+    "swin_large_patch4_window7_224_in22k": swin_large_patch4_window7_224_in22k,
+    "swin_s3_tiny_224": swin_s3_tiny_224,
+    "swin_s3_small_224": swin_s3_small_224,
+    "swin_s3_base_224": swin_s3_base_224,
+}
