@@ -191,7 +191,7 @@ class SwinTransformer(keras.Model):
             x = tf.reduce_mean(x, axis=1)
         return x if self.pre_logits else self.head(x)
 
-    def call(self, x, training=False):
+    def call(self, x):
         x = self.forward_features(x)
         x = self.forward_head(x)
         return x
