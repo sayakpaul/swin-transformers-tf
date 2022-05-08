@@ -139,3 +139,19 @@ class WindowAttention(layers.Layer):
         x = self.proj(x)
         x = self.proj_drop(x)
         return x
+
+    def get_config(self):
+        config = super().get_config()
+        config.update(
+            {
+                "dim": self.dim,
+                "window_size": self.window_size,
+                "win_h": self.win_h,
+                "win_w": self.win_w,
+                "num_heads": self.num_heads,
+                "head_dim": self.head_dim,
+                "attn_dim": self.attn_dim,
+                "scale": self.scale,
+            }
+        )
+        return config

@@ -16,3 +16,8 @@ class StochasticDepth(layers.Layer):
             random_tensor = tf.floor(random_tensor)
             return (x / keep_prob) * random_tensor
         return x
+
+    def get_config(self):
+        config = super().get_config()
+        config.update({"drop_prob": self.drop_prob})
+        return config
