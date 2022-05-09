@@ -1,0 +1,4 @@
+# timm needs to be installed from source.
+torch==1.11.0
+tensorflow==2.8.0
+ml_collections==0.1.1

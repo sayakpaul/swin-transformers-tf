@@ -1,4 +1,6 @@
-# swin-transformers-tf
+# Swin for win
+
+[TBA]
 
 Install `timm` from source:
 
