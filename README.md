@@ -149,7 +149,7 @@ To view different model configurations, refer to `swins/model_configs.py`.
 
 * [`timm` library source code](https://github.com/rwightman/pytorch-image-models)
 for the awesome codebase. I've copy-pasted and modified a huge chunk of code from there.
-I've also mentioned it from the codebase.
+I've also mentioned it from the respective scripts.
 * [Willi Gierke](https://ch.linkedin.com/in/willi-gierke) for helping with a non-trivial model serialization hack.
 * [ML-GDE program](https://developers.google.com/programs/experts/) for
 providing GCP credits that supported my experiments.
