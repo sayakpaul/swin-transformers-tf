@@ -171,7 +171,7 @@ class SwinTransformer(keras.Model):
 
         self.norm = norm_layer()
 
-        if num_classes > 0:
+        if pre_logits:
             self.pre_logits = pre_logits
             self.head = L.Dense(num_classes, name="classification_head")
 
