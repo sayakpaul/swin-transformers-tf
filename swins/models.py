@@ -141,7 +141,7 @@ class SwinTransformer(keras.Model):
         window_size = to_ntuple(self.num_layers)(window_size)
         mlp_ratio = to_ntuple(self.num_layers)(mlp_ratio)
         dpr = [
-            x for x in tf.linspace(0.0, drop_path_rate, sum(depths))
+            float(x) for x in tf.linspace(0.0, drop_path_rate, sum(depths))
         ]  # stochastic depth decay rule
 
         layers = [
