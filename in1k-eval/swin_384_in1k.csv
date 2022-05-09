@@ -1,0 +1,3 @@
+model_name,top1_acc(%),top5_acc(%)
+swin_base_patch4_window12_384/,86.428,98.042
+swin_large_patch4_window12_384/,87.272,98.242

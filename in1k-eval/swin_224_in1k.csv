@@ -1,0 +1,8 @@
+model_name,top1_acc(%),top5_acc(%)
+swin_base_patch4_window7_224/,85.134,97.480
+swin_large_patch4_window7_224/,86.252,97.878
+swin_s3_base_224/,83.958,96.532
+swin_s3_small_224/,83.648,96.358
+swin_s3_tiny_224/,82.034,95.864
+swin_small_patch4_window7_224/,83.178,96.240
+swin_tiny_patch4_window7_224/,81.184,95.512
