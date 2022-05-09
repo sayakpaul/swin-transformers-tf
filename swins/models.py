@@ -197,7 +197,10 @@ class SwinTransformer(keras.Model):
         x = self.forward_head(x)
         return x
 
-    @tf.function
+    # Thanks to Willi Gierke for this suggestion.
+    @tf.function(
+        input_signature=[tf.TensorSpec([None, None, None, 3], tf.float32)]
+    )
     def get_attention_scores(
         self, x: tf.Tensor
     ) -> Dict[str, Dict[str, tf.Tensor]]:
