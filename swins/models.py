@@ -171,8 +171,8 @@ class SwinTransformer(keras.Model):
 
         self.norm = norm_layer()
 
-        if pre_logits:
-            self.pre_logits = pre_logits
+        self.pre_logits = pre_logits
+        if not self.pre_logits:
             self.head = L.Dense(num_classes, name="classification_head")
 
     def forward_features(self, x):
