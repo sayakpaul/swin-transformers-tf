@@ -6,6 +6,7 @@ https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/swin_t
 import collections.abc
 from functools import partial
 from itertools import repeat
+from typing import Dict
 
 import tensorflow as tf
 from tensorflow import keras
@@ -196,7 +197,9 @@ class SwinTransformer(keras.Model):
         x = self.forward_head(x)
         return x
 
-    def get_attention_scores(self, x):
+    def get_attention_scores(
+        self, x: tf.Tensor
+    ) -> Dict[str, Dict[str, tf.Tensor]]:
         all_attention_scores = {}
 
         x = self.projection(x)

@@ -4,7 +4,9 @@ https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/swin_t
 """
 
 from functools import partial
+from typing import Dict, Union
 
+import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers as L
 
@@ -89,7 +91,9 @@ class BasicLayer(keras.Model):
         else:
             self.downsample = None
 
-    def call(self, x, return_attns=False):
+    def call(
+        self, x, return_attns=False
+    ) -> Union[tf.Tensor, Dict[str, tf.Tensor]]:
         if return_attns:
             attention_scores = {}
 

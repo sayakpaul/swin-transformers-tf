@@ -5,6 +5,7 @@ https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/swin_t
 
 import collections.abc
 from functools import partial
+from typing import Dict, Union
 
 import numpy as np
 import tensorflow as tf
@@ -125,7 +126,9 @@ class SwinTransformerBlock(keras.Model):
         attn_mask = tf.where(attn_mask != 0, -100.0, attn_mask)
         return tf.where(attn_mask == 0, 0.0, attn_mask)
 
-    def call(self, x, return_attns=False):
+    def call(
+        self, x, return_attns=False
+    ) -> Union[tf.Tensor, Dict[str, tf.Tensor]]:
         H, W = self.input_resolution
         B, L, C = tf.shape(x)[0], tf.shape(x)[1], tf.shape(x)[2]
 

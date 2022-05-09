@@ -5,6 +5,7 @@ https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/swin_t
 
 
 import collections.abc
+from typing import Tuple, Union
 
 import tensorflow as tf
 from tensorflow.keras import layers
@@ -100,7 +101,9 @@ class WindowAttention(layers.Layer):
         )
         return tf.transpose(relative_position_bias, [2, 0, 1])
 
-    def call(self, x, mask=None, return_attns=False):
+    def call(
+        self, x, mask=None, return_attns=False
+    ) -> Union[tf.Tensor, Tuple[tf.Tensor, tf.Tensor]]:
         """
         Args:
             x: input features with shape of (num_windows*B, N, C)

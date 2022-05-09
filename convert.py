@@ -208,12 +208,13 @@ def main(args):
     )
 
     # Head layers.
-    head_layer = tf_model.get_layer("classification_head")
-    tf_model.layers[-1] = helpers.modify_tf_block(
-        head_layer,
-        np_state_dict["head.weight"],
-        np_state_dict["head.bias"],
-    )
+    if not args.pre_logits:
+        head_layer = tf_model.get_layer("classification_head")
+        tf_model.layers[-1] = helpers.modify_tf_block(
+            head_layer,
+            np_state_dict["head.weight"],
+            np_state_dict["head.bias"],
+        )
 
     # Swin layers.
     for i in range(len(cfg["depths"])):
