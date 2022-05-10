@@ -12,8 +12,8 @@ objects and one can call all the utility functions on them (example: `.summary()
 Refer to the ["Using the models"](https://github.com/sayakpaul/swin-transformers-tf#using-the-models)
 section to get started. 
 
-I find Swin Transformers interesting because they induce a sense of hierarchies by using **s**hifted **win**dows. Multi-scale representations like that are crucial to get good performance in
-tasks like object detection and segmentation.
+I find Swin Transformers interesting because they induce a sense of hierarchies by using ***s***hifted ***win***dows. Multi-scale
+representations like that are crucial to get good performance in tasks like object detection and segmentation.
 ![teaser](https://github.com/microsoft/Swin-Transformer/raw/main/figures/teaser.png)
 <sup><a href=https://github.com/microsoft/Swin-Transformer>Source</a></sup>
 
