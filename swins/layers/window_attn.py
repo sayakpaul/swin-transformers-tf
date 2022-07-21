@@ -137,7 +137,7 @@ class WindowAttention(layers.Layer):
 
         x = tf.matmul(attn, v)
         x = tf.transpose(x, perm=[0, 2, 1, 3])
-        x = tf.reshape(x, (B_, N, -1))
+        x = tf.reshape(x, (B_, N, C))
 
         x = self.proj(x)
         x = self.proj_drop(x)
